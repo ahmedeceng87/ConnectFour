@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ConnectFour/.vs/ConnectFour
+/ConnectFour/ConnectFour/bin/Debug/net8.0-windows
+/ConnectFour/ConnectFour/obj

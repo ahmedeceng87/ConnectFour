@@ -60,11 +60,11 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid MouseDown="Cell_MouseDown" Margin="6">
-                                <!-- Background hole -->
-                                <Ellipse Fill="#0F000000" Opacity="0.08"/>
+                            <Grid Margin="6" MouseDown="Cell_MouseDown">
+                                <!--  Background hole  -->
+                                <Ellipse Fill="#0F000000" Opacity="0.08" />
 
-                                <!-- Token container -->
+                                <!--  Token container  -->
                                 <Grid Width="80" Height="80">
                                     <Grid.Style>
                                         <Style TargetType="Grid">
@@ -74,9 +74,11 @@
                                                         <BeginStoryboard>
                                                             <Storyboard>
                                                                 <DoubleAnimation
-                                            Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                            From="-500" To="0" Duration="0:0:0.55"
-                                            EasingFunction="{StaticResource BounceEase}"/>
+                                                                    EasingFunction="{StaticResource BounceEase}"
+                                                                    Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                                                                    From="-500"
+                                                                    To="0"
+                                                                    Duration="0:0:0.55" />
                                                             </Storyboard>
                                                         </BeginStoryboard>
                                                     </DataTrigger.EnterActions>
@@ -86,9 +88,11 @@
                                                         <BeginStoryboard>
                                                             <Storyboard>
                                                                 <DoubleAnimation
-                                            Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                            From="-500" To="0" Duration="0:0:0.55"
-                                            EasingFunction="{StaticResource BounceEase}"/>
+                                                                    EasingFunction="{StaticResource BounceEase}"
+                                                                    Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                                                                    From="-500"
+                                                                    To="0"
+                                                                    Duration="0:0:0.55" />
                                                             </Storyboard>
                                                         </BeginStoryboard>
                                                     </DataTrigger.EnterActions>
@@ -98,42 +102,46 @@
                                     </Grid.Style>
 
                                     <Grid.RenderTransform>
-                                        <TranslateTransform Y="0"/>
+                                        <TranslateTransform Y="0" />
                                     </Grid.RenderTransform>
 
-                                    <!-- Base color -->
-                                    <Ellipse Fill="{Binding Player, Converter={StaticResource PlayerToBrushConverter}}" 
-                     Stroke="Black" StrokeThickness="1"/>
+                                    <!--  Base color  -->
+                                    <Ellipse
+                                        Fill="{Binding Player, Converter={StaticResource PlayerToBrushConverter}}"
+                                        Stroke="Black"
+                                        StrokeThickness="1" />
 
-                                    <!-- Radial shading (curved look) -->
+                                    <!--  Radial shading (curved look)  -->
                                     <Ellipse>
                                         <Ellipse.Fill>
                                             <RadialGradientBrush Center="0.5,0.5" RadiusX="0.9" RadiusY="0.9">
-                                                <GradientStop Color="#00000000" Offset="0.65"/>
-                                                <GradientStop Color="#55000000" Offset="1.0"/>
+                                                <GradientStop Offset="0.65" Color="#00000000" />
+                                                <GradientStop Offset="1.0" Color="#55000000" />
                                             </RadialGradientBrush>
                                         </Ellipse.Fill>
                                     </Ellipse>
 
-                                    <!-- Softer glossy highlight (centered near top) -->
-                                    <Ellipse Width="50" Height="25"
-                     Margin="0,12,0,0"
-                     HorizontalAlignment="Center"
-                     VerticalAlignment="Top">
+                                    <!--  Softer glossy highlight (centered near top)  -->
+                                    <Ellipse
+                                        Width="50"
+                                        Height="25"
+                                        Margin="0,12,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top">
                                         <Ellipse.Fill>
-                                            <RadialGradientBrush GradientOrigin="0.5,0.3" Center="0.5,0.5" RadiusX="0.8" RadiusY="0.8">
-                                                <GradientStop Color="#80FFFFFF" Offset="0"/>
-                                                <!-- soft white center -->
-                                                <GradientStop Color="#00FFFFFF" Offset="1"/>
-                                                <!-- fades out -->
+                                            <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.3" RadiusX="0.8" RadiusY="0.8">
+                                                <GradientStop Offset="0" Color="#80FFFFFF" />
+                                                <!--  soft white center  -->
+                                                <GradientStop Offset="1" Color="#00FFFFFF" />
+                                                <!--  fades out  -->
                                             </RadialGradientBrush>
                                         </Ellipse.Fill>
                                         <Ellipse.Opacity>0.25</Ellipse.Opacity>
                                     </Ellipse>
                                 </Grid>
 
-                                <!-- Hole outline -->
-                                <Ellipse Stroke="Black" Opacity="0.18"/>
+                                <!--  Hole outline  -->
+                                <Ellipse Opacity="0.18" Stroke="Black" />
                             </Grid>
                         </DataTemplate>
 

@@ -1,12 +1,53 @@
 ﻿<Window x:Class="ConnectFour.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ConnectFour"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        xmlns:conv="clr-namespace:ConnectFour.Converters"
+        Title="Connect Four" Height="560" Width="600"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <conv:PlayerToBrushConverter x:Key="PlayerToBrushConverter"/>
+    </Window.Resources>
+    <DockPanel LastChildFill="True" Margin="12">
+        <!-- Top bar -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,8" >
+            <TextBlock Text="Starting Player:" VerticalAlignment="Center" Margin="0,0,6,0"/>
+            <ComboBox Width="100" Margin="0,0,12,0"
+                      ItemsSource="{Binding StartingPlayerOptions}"
+                      SelectedItem="{Binding StartingPlayer, Mode=TwoWay}" />
+            <Button Content="New Game" Width="90" Margin="0,0,12,0" Command="{Binding NewGameCommand}" />
+            <TextBlock Text="{Binding StatusText}" VerticalAlignment="Center" FontWeight="Bold"/>
+        </StackPanel>
 
-    </Grid>
+        <!-- Column drop buttons -->
+        <UniformGrid DockPanel.Dock="Top" Rows="1" Columns="7" Margin="0,0,0,8">
+            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="0"/>
+            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="1"/>
+            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="2"/>
+            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="3"/>
+            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="4"/>
+            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="5"/>
+            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="6"/>
+        </UniformGrid>
+
+        <!-- Board -->
+        <Border Background="#1E63B6" CornerRadius="8" Padding="8">
+            <ItemsControl ItemsSource="{Binding Cells}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="6" Columns="7"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!-- “Hole” look: blue board with white/colored discs -->
+                        <Grid Margin="4">
+                            <Ellipse Fill="Black" Opacity="0.08"/>
+                            <Ellipse Fill="{Binding Player, Converter={StaticResource PlayerToBrushConverter}}"/>
+                            <Ellipse Stroke="Black" Opacity="0.15"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+    </DockPanel>
 </Window>

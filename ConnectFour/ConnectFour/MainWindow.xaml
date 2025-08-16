@@ -18,17 +18,6 @@
             <TextBlock Text="{Binding StatusText}" VerticalAlignment="Center" FontWeight="Bold"/>
         </StackPanel>
 
-        <!-- Column drop buttons -->
-        <UniformGrid DockPanel.Dock="Top" Rows="1" Columns="7" Margin="0,0,0,8">
-            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="0"/>
-            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="1"/>
-            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="2"/>
-            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="3"/>
-            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="4"/>
-            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="5"/>
-            <Button Content="▼" FontSize="18" Command="{Binding DropCommand}" CommandParameter="6"/>
-        </UniformGrid>
-
         <!-- Board -->
         <Border Background="#1E63B6" CornerRadius="8" Padding="8">
             <ItemsControl ItemsSource="{Binding Cells}">
@@ -40,7 +29,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <!-- “Hole” look: blue board with white/colored discs -->
-                        <Grid Margin="4">
+                        <Grid Margin="4"  MouseDown="Cell_MouseDown">
                             <Ellipse Fill="Black" Opacity="0.08"/>
                             <Ellipse Fill="{Binding Player, Converter={StaticResource PlayerToBrushConverter}}"/>
                             <Ellipse Stroke="Black" Opacity="0.15"/>
